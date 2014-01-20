@@ -6,7 +6,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{11275EDF-A2C7-446A-AC69-F2FE714E8BA1}</ProjectGuid>
+    <ProjectGuid>{20E821E2-FA92-44C0-8653-3484AE82C4A0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>LoggingTest</RootNamespace>
