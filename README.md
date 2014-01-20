@@ -87,4 +87,3 @@ method to the Event logger. That can be done like this.
 			}
 		}
 	}
-}
