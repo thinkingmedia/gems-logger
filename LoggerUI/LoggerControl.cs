@@ -2,10 +2,11 @@
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using Logging;
 using Logging.Formatters;
 using Logging.Writers;
 
-namespace Logging
+namespace LoggerUI
 {
     /// <summary>
     /// A control the prints the contents of the Log file.

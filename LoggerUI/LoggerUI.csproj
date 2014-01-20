@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{501504DE-66C8-4430-B469-E1746BFB2D17}</ProjectGuid>
+    <ProjectGuid>{16F4DA68-38A9-43BD-82FD-F3AC4F4B47DF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Logging</RootNamespace>
-    <AssemblyName>Logging</AssemblyName>
+    <RootNamespace>LoggerUI</RootNamespace>
+    <AssemblyName>LoggerUI</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -33,28 +33,29 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entries\LogEntry.cs" />
-    <Compile Include="Exceptions\FormatterException.cs" />
-    <Compile Include="Exceptions\LoggerException.cs" />
-    <Compile Include="Formatters\DetailFormat.cs" />
-    <Compile Include="Formatters\iFormatter.cs" />
-    <Compile Include="Formatters\SimpleFormat.cs" />
-    <Compile Include="Logger.cs" />
+    <Compile Include="LoggerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="LoggerControl.Designer.cs">
+      <DependentUpon>LoggerControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Writers\ArchiveWriter.cs" />
-    <Compile Include="Writers\FileWriter.cs" />
-    <Compile Include="Writers\FilterWriter.cs" />
-    <Compile Include="Writers\FormatWriter.cs" />
-    <Compile Include="Writers\iLogWriter.cs" />
-    <Compile Include="Writers\LevelWriter.cs" />
-    <Compile Include="Writers\ListBoxWriter.cs" />
-    <Compile Include="Writers\ContainsWriter.cs" />
-    <Compile Include="Writers\MemoryWriter.cs" />
-    <Compile Include="Writers\MultiWriter.cs" />
-    <Compile Include="Writers\ThreadWriter.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Logging\Logging.csproj">
+      <Project>{501504de-66c8-4430-b469-e1746bfb2d17}</Project>
+      <Name>Logging %28GitHub\Logging\Logging%29</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="LoggerControl.resx">
+      <DependentUpon>LoggerControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

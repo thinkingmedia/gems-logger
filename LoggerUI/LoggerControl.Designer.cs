@@ -1,4 +1,4 @@
-﻿namespace Logging
+﻿namespace LoggerUI
 {
     partial class LoggerControl
     {
