@@ -1,5 +1,4 @@
-﻿
-namespace Logging.Writers
+﻿namespace Logging.Writers
 {
     /// <summary>
     /// Injects marker text into the log stream.
@@ -17,6 +16,14 @@ namespace Logging.Writers
         private readonly bool _invert;
 
         /// <summary>
+        /// The filter function.
+        /// </summary>
+        private bool ThreadFilter(Logger.eLEVEL pLevel, string pPrefix, string pMsg)
+        {
+            return _invert ? !pMsg.Contains(_contains) : pMsg.Contains(_contains);
+        }
+
+        /// <summary>
         /// Constructor
         /// </summary>
         public ContainsWriter(iLogWriter pWriter, string pContains, bool pInvert)
@@ -25,14 +32,6 @@ namespace Logging.Writers
             _contains = pContains;
             _invert = pInvert;
             Filter = ThreadFilter;
-        }
-
-        /// <summary>
-        /// The filter function.
-        /// </summary>
-        private bool ThreadFilter(Logger.eLEVEL pLevel, string pPrefix, string pMsg)
-        {
-            return _invert ? !pMsg.Contains(_contains) : pMsg.Contains(_contains);
         }
     }
 }

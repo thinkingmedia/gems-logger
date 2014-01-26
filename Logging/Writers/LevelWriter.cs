@@ -1,6 +1,4 @@
-﻿
-
-using System.Linq;
+﻿using System.Linq;
 
 namespace Logging.Writers
 {
@@ -15,6 +13,14 @@ namespace Logging.Writers
         private readonly Logger.eLEVEL[] _levels;
 
         /// <summary>
+        /// Filters messages by their log level.
+        /// </summary>
+        private bool FilterByLevel(Logger.eLEVEL pLevel, string pPrefix, string pMsg)
+        {
+            return _levels.Any(pArg=>pLevel == pArg);
+        }
+
+        /// <summary>
         /// Constructor
         /// </summary>
         public LevelWriter(iLogWriter pWriter, Logger.eLEVEL[] pLevels)
@@ -22,14 +28,6 @@ namespace Logging.Writers
         {
             _levels = pLevels;
             Filter = FilterByLevel;
-        }
-
-        /// <summary>
-        /// Filters messages by their log level.
-        /// </summary>
-        private bool FilterByLevel(Logger.eLEVEL pLevel, string pPrefix, string pMsg)
-        {
-            return _levels.Any(pArg => pLevel == pArg);
         }
     }
 }

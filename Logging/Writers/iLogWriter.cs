@@ -8,6 +8,11 @@ namespace Logging.Writers
     public interface iLogWriter
     {
         /// <summary>
+        /// Closes the writer.
+        /// </summary>
+        void close();
+
+        /// <summary>
         /// Opens the writer.
         /// </summary>
         void open();
@@ -16,10 +21,5 @@ namespace Logging.Writers
         /// Writes a line.
         /// </summary>
         void write(Logger.eLEVEL pLevel, String pPrefix, String pMsg);
-
-        /// <summary>
-        /// Closes the writer.
-        /// </summary>
-        void close();
     }
 }

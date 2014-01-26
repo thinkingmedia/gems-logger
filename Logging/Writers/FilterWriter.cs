@@ -1,22 +1,16 @@
-﻿
-namespace Logging.Writers
+﻿namespace Logging.Writers
 {
     public class FilterWriter : iLogWriter
     {
         /// <summary>
-        /// The filter method.
+        /// The filter function.
         /// </summary>
-        protected delegate bool FilterFunc(Logger.eLEVEL pLevel, string pPrefix, string pMsg);
+        protected FilterFunc Filter { get; set; }
 
         /// <summary>
         /// The inner writer being used.
         /// </summary>
         private iLogWriter _writer { get; set; }
-
-        /// <summary>
-        /// The filter function.
-        /// </summary>
-        protected FilterFunc Filter { get; set; }
 
         /// <summary>
         /// Constructor
@@ -53,5 +47,10 @@ namespace Logging.Writers
         {
             _writer.close();
         }
+
+        /// <summary>
+        /// The filter method.
+        /// </summary>
+        protected delegate bool FilterFunc(Logger.eLEVEL pLevel, string pPrefix, string pMsg);
     }
 }

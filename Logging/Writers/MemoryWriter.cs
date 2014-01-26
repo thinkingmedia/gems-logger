@@ -13,28 +13,11 @@ namespace Logging.Writers
         private StringBuilder _buffer;
 
         /// <summary>
-        /// Returns the contents of the writer.
+        /// Close the memory buffer.
         /// </summary>
-        /// <returns></returns>
-        public string getBuffer()
+        void iLogWriter.close()
         {
-            if (_buffer == null)
-            {
-                return "";
-            }
-
-            lock (_buffer)
-            {
-                return _buffer.ToString().Trim();
-            }
-        }
-
-        /// <summary>
-        /// Clears the contents of the memory buffer.
-        /// </summary>
-        public void clear()
-        {
-            _buffer.Clear();
+            _buffer = null;
         }
 
         /// <summary>
@@ -62,11 +45,28 @@ namespace Logging.Writers
         }
 
         /// <summary>
-        /// Close the memory buffer.
+        /// Clears the contents of the memory buffer.
         /// </summary>
-        void iLogWriter.close()
+        public void clear()
         {
-            _buffer = null;
+            _buffer.Clear();
+        }
+
+        /// <summary>
+        /// Returns the contents of the writer.
+        /// </summary>
+        /// <returns></returns>
+        public string getBuffer()
+        {
+            if (_buffer == null)
+            {
+                return "";
+            }
+
+            lock (_buffer)
+            {
+                return _buffer.ToString().Trim();
+            }
         }
     }
 }

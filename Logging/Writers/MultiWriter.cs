@@ -12,7 +12,7 @@ namespace Logging.Writers
         /// </summary>
         public void open()
         {
-            ForEach(pWriter => pWriter.open());
+            ForEach(pWriter=>pWriter.open());
         }
 
         /// <summary>
@@ -20,7 +20,7 @@ namespace Logging.Writers
         /// </summary>
         public void write(Logger.eLEVEL pLevel, string pPrefix, string pMsg)
         {
-            ForEach(pWriter => pWriter.write(pLevel, pPrefix, pMsg));
+            ForEach(pWriter=>pWriter.write(pLevel, pPrefix, pMsg));
         }
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace Logging.Writers
         /// </summary>
         public void close()
         {
-            ForEach(pWriter => pWriter.close());
+            ForEach(pWriter=>pWriter.close());
         }
     }
 }

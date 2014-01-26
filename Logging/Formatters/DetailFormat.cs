@@ -33,6 +33,14 @@ namespace Logging.Formatters
         }
 
         /// <summary>
+        /// Converts the LogLevel to string (INFO is blank).
+        /// </summary>
+        public static String Level(Logger.eLEVEL pLevel)
+        {
+            return pLevel != Logger.eLEVEL.FINE ? String.Format(" [{0}] ", pLevel.ToString().ToUpper()) : " ";
+        }
+
+        /// <summary>
         /// Associates a job code with the current thread ID.
         /// </summary>
         public static void Register(string pCode)
@@ -67,7 +75,7 @@ namespace Logging.Formatters
                     return;
                 }
 
-                KeyValuePair<int, string> pair = _codes.First(pPair => pPair.Value == pCode);
+                KeyValuePair<int, string> pair = _codes.First(pPair=>pPair.Value == pCode);
                 _codes.Remove(pair.Key);
             }
         }
@@ -85,14 +93,6 @@ namespace Logging.Formatters
                 }
                 _codes.Remove(pThreadID);
             }
-        }
-
-        /// <summary>
-        /// Converts the LogLevel to string (INFO is blank).
-        /// </summary>
-        public static String Level(Logger.eLEVEL pLevel)
-        {
-            return pLevel != Logger.eLEVEL.FINE ? String.Format(" [{0}] ", pLevel.ToString().ToUpper()) : " ";
         }
     }
 }

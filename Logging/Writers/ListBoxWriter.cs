@@ -14,14 +14,6 @@ namespace Logging.Writers
         private readonly ListBox _listbox;
 
         /// <summary>
-        /// Constructor
-        /// </summary>
-        public ListBoxWriter(ListBox pListBox)
-        {
-            _listbox = pListBox;
-        }
-
-        /// <summary>
         /// Adds a string to the list control.
         /// </summary>
         private void Append(string pMsg)
@@ -48,6 +40,13 @@ namespace Logging.Writers
         }
 
         /// <summary>
+        /// Closes the writer.
+        /// </summary>
+        void iLogWriter.close()
+        {
+        }
+
+        /// <summary>
         /// Opens the writer
         /// </summary>
         void iLogWriter.open()
@@ -61,7 +60,7 @@ namespace Logging.Writers
         {
             if (_listbox.InvokeRequired)
             {
-                _listbox.BeginInvoke(new Action(() => Append(pMsg)));
+                _listbox.BeginInvoke(new Action(()=>Append(pMsg)));
             }
             else
             {
@@ -70,10 +69,11 @@ namespace Logging.Writers
         }
 
         /// <summary>
-        /// Closes the writer.
+        /// Constructor
         /// </summary>
-        void iLogWriter.close()
+        public ListBoxWriter(ListBox pListBox)
         {
+            _listbox = pListBox;
         }
     }
 }

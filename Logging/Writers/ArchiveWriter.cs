@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 
 namespace Logging.Writers
 {
@@ -29,14 +28,15 @@ namespace Logging.Writers
         private iLogWriter _writer;
 
         /// <summary>
-        /// Constructor
+        /// Closes the current writer.
         /// </summary>
-        /// <param name="pBasePath">The folder to store Log files.</param>
-        /// <param name="pPrefix">Name of the Log file.</param>
-        public ArchiveWriter(string pBasePath, string pPrefix)
+        void iLogWriter.close()
         {
-            _basePath = pBasePath;
-            _prefix = pPrefix;
+            if (_writer != null)
+            {
+                _writer.close();
+            }
+            _writer = null;
         }
 
         /// <summary>
@@ -67,15 +67,14 @@ namespace Logging.Writers
         }
 
         /// <summary>
-        /// Closes the current writer.
+        /// Constructor
         /// </summary>
-        void iLogWriter.close()
+        /// <param name="pBasePath">The folder to store Log files.</param>
+        /// <param name="pPrefix">Name of the Log file.</param>
+        public ArchiveWriter(string pBasePath, string pPrefix)
         {
-            if (_writer != null)
-            {
-                _writer.close();
-            }
-            _writer = null;
+            _basePath = pBasePath;
+            _prefix = pPrefix;
         }
     }
 }

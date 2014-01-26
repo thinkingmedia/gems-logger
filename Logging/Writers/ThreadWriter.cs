@@ -1,5 +1,4 @@
-﻿
-using System.Threading;
+﻿using System.Threading;
 
 namespace Logging.Writers
 {
@@ -15,6 +14,14 @@ namespace Logging.Writers
         public int ThreadID { get; set; }
 
         /// <summary>
+        /// The filter function.
+        /// </summary>
+        private bool ThreadFilter(Logger.eLEVEL pLevel, string pPrefix, string pMsg)
+        {
+            return (ThreadID == Thread.CurrentThread.ManagedThreadId);
+        }
+
+        /// <summary>
         /// Constructor
         /// </summary>
         public ThreadWriter(iLogWriter pWriter, int pThreadID = 0)
@@ -22,14 +29,6 @@ namespace Logging.Writers
         {
             ThreadID = pThreadID;
             Filter = ThreadFilter;
-        }
-
-        /// <summary>
-        /// The filter function.
-        /// </summary>
-        private bool ThreadFilter(Logger.eLEVEL pLevel, string pPrefix, string pMsg)
-        {
-            return (ThreadID == Thread.CurrentThread.ManagedThreadId);
         }
     }
 }

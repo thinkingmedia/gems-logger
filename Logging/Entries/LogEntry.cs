@@ -11,9 +11,9 @@ namespace Logging.Entries
     public class LogEntry
     {
         /// <summary>
-        /// The logging level for this entry.
+        /// Text in the middle.
         /// </summary>
-        public Logger.eLEVEL Level { get; set; }
+        private readonly StringBuilder _body;
 
         /// <summary>
         /// Text at the front.
@@ -21,14 +21,35 @@ namespace Logging.Entries
         private readonly StringBuilder _prefix;
 
         /// <summary>
-        /// Text in the middle.
-        /// </summary>
-        private readonly StringBuilder _body;
-
-        /// <summary>
         /// Text at the end.
         /// </summary>
         private readonly StringBuilder _tail;
+
+        /// <summary>
+        /// The logging level for this entry.
+        /// </summary>
+        public Logger.eLEVEL Level { get; set; }
+
+        /// <summary>
+        /// Checks parameters for null before writing to builder.
+        /// </summary>
+        private static void Log(StringBuilder pBuild, bool pQuoted, string pStr, params object[] pArgs)
+        {
+            if (string.IsNullOrEmpty(pStr))
+            {
+                return;
+            }
+            string str = string.Format(pStr, pArgs);
+            if (pQuoted)
+            {
+                str = string.Format("\"{0}\"", str);
+            }
+            if (pBuild.Length > 0 && str.Length > 0)
+            {
+                pBuild.Append(" ");
+            }
+            pBuild.Append(str);
+        }
 
         /// <summary>
         /// Constructor
@@ -60,24 +81,12 @@ namespace Logging.Entries
         }
 
         /// <summary>
-        /// Checks parameters for null before writing to builder.
+        /// Generates the log message.
         /// </summary>
-        private static void Log(StringBuilder pBuild, bool pQuoted, string pStr, params object[] pArgs)
+        public override string ToString()
         {
-            if (string.IsNullOrEmpty(pStr))
-            {
-                return;
-            }
-            string str = string.Format(pStr, pArgs);
-            if (pQuoted)
-            {
-                str = string.Format("\"{0}\"", str);
-            }
-            if (pBuild.Length > 0 && str.Length > 0)
-            {
-                pBuild.Append(" ");
-            }
-            pBuild.Append(str);
+            string[] parts = {_prefix.ToString().Trim(), _body.ToString().Trim(), _tail.ToString().Trim()};
+            return string.Join(" ", from str in parts where str.Length > 0 select str);
         }
 
         /// <summary>
@@ -127,15 +136,5 @@ namespace Logging.Entries
         {
             Log(_tail, true, pStr, pArgs);
         }
-
-        /// <summary>
-        /// Generates the log message.
-        /// </summary>
-        public override string ToString()
-        {
-            string[] parts = { _prefix.ToString().Trim(), _body.ToString().Trim(), _tail.ToString().Trim() };
-            return string.Join(" ", from str in parts where str.Length > 0 select str);
-        }
-
     }
 }

@@ -20,22 +20,23 @@ namespace Logging.Writers
         private StreamWriter _writer;
 
         /// <summary>
-        /// Constructor
+        /// Closes the stream.
         /// </summary>
-        public FileWriter(String pPath)
+        void IDisposable.Dispose()
         {
-            if (string.IsNullOrWhiteSpace(pPath))
-            {
-                throw new LoggerException("Path can not be empty or null.");
-            }
+            ((iLogWriter)this).close();
+        }
 
-            _path = pPath;
-
-            string dir = Path.GetDirectoryName(_path);
-            if (dir != null && !Directory.Exists(dir))
+        /// <summary>
+        /// Closes the Log file.
+        /// </summary>
+        void iLogWriter.close()
+        {
+            if (_writer != null)
             {
-                Directory.CreateDirectory(dir);
+                _writer.Close();
             }
+            _writer = null;
         }
 
         /// <summary>
@@ -63,23 +64,22 @@ namespace Logging.Writers
         }
 
         /// <summary>
-        /// Closes the stream.
+        /// Constructor
         /// </summary>
-        void IDisposable.Dispose()
+        public FileWriter(String pPath)
         {
-            ((iLogWriter)this).close();
-        }
-
-        /// <summary>
-        /// Closes the Log file.
-        /// </summary>
-        void iLogWriter.close()
-        {
-            if (_writer != null)
+            if (string.IsNullOrWhiteSpace(pPath))
             {
-                _writer.Close();
+                throw new LoggerException("Path can not be empty or null.");
             }
-            _writer = null;
+
+            _path = pPath;
+
+            string dir = Path.GetDirectoryName(_path);
+            if (dir != null && !Directory.Exists(dir))
+            {
+                Directory.CreateDirectory(dir);
+            }
         }
     }
 }

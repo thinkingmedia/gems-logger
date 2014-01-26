@@ -3,7 +3,7 @@
 namespace Logging.Exceptions
 {
     /// <summary>
-    /// Exceptions related to the formatters. 
+    /// Exceptions related to the formatters.
     /// </summary>
     public class FormatterException : LoggerException
     {
