@@ -227,7 +227,9 @@ namespace Logging
                 return;
             }
 
-            Console.WriteLine(pMsg);
+#if DEBUG
+            System.Diagnostics.Debug.WriteLine(pMsg);
+#endif
 
             List<iLogWriter> writers;
             lock (_writers)
