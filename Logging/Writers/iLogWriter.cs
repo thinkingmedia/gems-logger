@@ -10,16 +10,16 @@ namespace Logging.Writers
         /// <summary>
         /// Closes the writer.
         /// </summary>
-        void close();
+        void Close();
 
         /// <summary>
         /// Opens the writer.
         /// </summary>
-        void open();
+        void Open();
 
         /// <summary>
         /// Writes a line.
         /// </summary>
-        void write(Logger.eLEVEL pLevel, String pPrefix, String pMsg);
+        void Write(Logger.eLEVEL pLevel, String pPrefix, String pMsg);
     }
 }

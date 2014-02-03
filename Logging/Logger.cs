@@ -61,7 +61,11 @@ namespace Logging
             }
             System.Diagnostics.EventLog.WriteEntry(name, pMsg, EventLogEntryType.Error);
 
-            Console.WriteLine(pMsg);
+#if DEBUG
+            System.Diagnostics.Debug.WriteLine(pMsg);
+#else
+                    Console.WriteLine(pMsg);
+#endif
         }
 
         /// <summary>
@@ -84,7 +88,7 @@ namespace Logging
                 {
                     return;
                 }
-                pWriter.open();
+                pWriter.Open();
                 _writers.Add(pWriter);
             }
         }
@@ -101,11 +105,15 @@ namespace Logging
                     iLogWriter writer = _writers[0];
                     try
                     {
-                        writer.close();
+                        writer.Close();
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine(e.Message);
+#if DEBUG
+                        System.Diagnostics.Debug.WriteLine(e.Message);
+#else
+                    Console.WriteLine(e.Message);
+#endif
                     }
                     _writers.Remove(writer);
                 }
@@ -152,7 +160,7 @@ namespace Logging
                 {
                     return;
                 }
-                pWriter.close();
+                pWriter.Close();
                 _writers.Remove(pWriter);
             }
         }
@@ -227,10 +235,6 @@ namespace Logging
                 return;
             }
 
-#if DEBUG
-            System.Diagnostics.Debug.WriteLine(pMsg);
-#endif
-
             List<iLogWriter> writers;
             lock (_writers)
             {
@@ -241,11 +245,15 @@ namespace Logging
             {
                 try
                 {
-                    writer.write(pLevel, _prefix, pMsg);
+                    writer.Write(pLevel, _prefix, pMsg);
                 }
                 catch (Exception e)
                 {
+#if DEBUG
+                    System.Diagnostics.Debug.WriteLine(e.Message);
+#else
                     Console.WriteLine(e.Message);
+#endif
                 }
             }
         }

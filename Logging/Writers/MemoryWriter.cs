@@ -15,7 +15,7 @@ namespace Logging.Writers
         /// <summary>
         /// Close the memory buffer.
         /// </summary>
-        void iLogWriter.close()
+        void iLogWriter.Close()
         {
             _buffer = null;
         }
@@ -23,7 +23,7 @@ namespace Logging.Writers
         /// <summary>
         /// Open the memory buffer.
         /// </summary>
-        void iLogWriter.open()
+        void iLogWriter.Open()
         {
             _buffer = new StringBuilder();
         }
@@ -31,7 +31,7 @@ namespace Logging.Writers
         /// <summary>
         /// Writes to the member buffer.
         /// </summary>
-        void iLogWriter.write(Logger.eLEVEL pLevel, string pPrefix, string pMsg)
+        void iLogWriter.Write(Logger.eLEVEL pLevel, string pPrefix, string pMsg)
         {
             if (_buffer == null)
             {

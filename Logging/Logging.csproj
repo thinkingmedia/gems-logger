@@ -45,6 +45,7 @@
     <Compile Include="Logger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Writers\ArchiveWriter.cs" />
+    <Compile Include="Writers\ConsoleWriter.cs" />
     <Compile Include="Writers\FileWriter.cs" />
     <Compile Include="Writers\FilterWriter.cs" />
     <Compile Include="Writers\FormatWriter.cs" />
@@ -55,6 +56,7 @@
     <Compile Include="Writers\MemoryWriter.cs" />
     <Compile Include="Writers\MultiWriter.cs" />
     <Compile Include="Writers\ThreadWriter.cs" />
+    <Compile Include="Writers\VisualStudioWriter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

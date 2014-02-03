@@ -30,17 +30,17 @@ namespace Logging.Writers
         /// <summary>
         /// Close the inner writer.
         /// </summary>
-        void iLogWriter.close()
+        void iLogWriter.Close()
         {
-            _writer.close();
+            _writer.Close();
         }
 
         /// <summary>
         /// Open the inner writer.
         /// </summary>
-        void iLogWriter.open()
+        void iLogWriter.Open()
         {
-            _writer.open();
+            _writer.Open();
         }
 
         /// <summary>
@@ -49,10 +49,10 @@ namespace Logging.Writers
         /// <param name="pLevel"></param>
         /// <param name="pPrefix"></param>
         /// <param name="pMsg"></param>
-        void iLogWriter.write(Logger.eLEVEL pLevel, string pPrefix, string pMsg)
+        void iLogWriter.Write(Logger.eLEVEL pLevel, string pPrefix, string pMsg)
         {
             pMsg = _formatters.Aggregate(pMsg, (pCurrent, pFormat)=>pFormat.format(pLevel, pPrefix, pCurrent));
-            _writer.write(pLevel, pPrefix, pMsg);
+            _writer.Write(pLevel, pPrefix, pMsg);
         }
 
         /// <summary>

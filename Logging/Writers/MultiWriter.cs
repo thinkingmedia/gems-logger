@@ -10,25 +10,25 @@ namespace Logging.Writers
         /// <summary>
         /// Opens the writer.
         /// </summary>
-        public void open()
+        public void Open()
         {
-            ForEach(pWriter=>pWriter.open());
+            ForEach(pWriter=>pWriter.Open());
         }
 
         /// <summary>
         /// Writes a line.
         /// </summary>
-        public void write(Logger.eLEVEL pLevel, string pPrefix, string pMsg)
+        public void Write(Logger.eLEVEL pLevel, string pPrefix, string pMsg)
         {
-            ForEach(pWriter=>pWriter.write(pLevel, pPrefix, pMsg));
+            ForEach(pWriter=>pWriter.Write(pLevel, pPrefix, pMsg));
         }
 
         /// <summary>
         /// Closes the writer.
         /// </summary>
-        public void close()
+        public void Close()
         {
-            ForEach(pWriter=>pWriter.close());
+            ForEach(pWriter=>pWriter.Close());
         }
     }
 }

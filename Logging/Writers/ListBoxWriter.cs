@@ -42,21 +42,21 @@ namespace Logging.Writers
         /// <summary>
         /// Closes the writer.
         /// </summary>
-        void iLogWriter.close()
+        void iLogWriter.Close()
         {
         }
 
         /// <summary>
         /// Opens the writer
         /// </summary>
-        void iLogWriter.open()
+        void iLogWriter.Open()
         {
         }
 
         /// <summary>
         /// Writes a line to the writer.
         /// </summary>
-        void iLogWriter.write(Logger.eLEVEL pLevel, string pPrefix, string pMsg)
+        void iLogWriter.Write(Logger.eLEVEL pLevel, string pPrefix, string pMsg)
         {
             if (_listbox.InvokeRequired)
             {

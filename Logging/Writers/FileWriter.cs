@@ -24,13 +24,13 @@ namespace Logging.Writers
         /// </summary>
         void IDisposable.Dispose()
         {
-            ((iLogWriter)this).close();
+            ((iLogWriter)this).Close();
         }
 
         /// <summary>
         /// Closes the Log file.
         /// </summary>
-        void iLogWriter.close()
+        void iLogWriter.Close()
         {
             if (_writer != null)
             {
@@ -42,7 +42,7 @@ namespace Logging.Writers
         /// <summary>
         /// Opens the file file.
         /// </summary>
-        void iLogWriter.open()
+        void iLogWriter.Open()
         {
             if (_writer == null)
             {
@@ -53,7 +53,7 @@ namespace Logging.Writers
         /// <summary>
         /// Writes a line to the Log file.
         /// </summary>
-        void iLogWriter.write(Logger.eLEVEL pLevel, string pPrefix, string pMsg)
+        void iLogWriter.Write(Logger.eLEVEL pLevel, string pPrefix, string pMsg)
         {
             if (_writer == null)
             {
@@ -76,10 +76,12 @@ namespace Logging.Writers
             _path = pPath;
 
             string dir = Path.GetDirectoryName(_path);
-            if (dir != null && !Directory.Exists(dir))
+            if (dir == null)
             {
-                Directory.CreateDirectory(dir);
+                return;
             }
+
+            Directory.CreateDirectory(dir);
         }
     }
 }

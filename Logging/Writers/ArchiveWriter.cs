@@ -30,11 +30,11 @@ namespace Logging.Writers
         /// <summary>
         /// Closes the current writer.
         /// </summary>
-        void iLogWriter.close()
+        void iLogWriter.Close()
         {
             if (_writer != null)
             {
-                _writer.close();
+                _writer.Close();
             }
             _writer = null;
         }
@@ -42,7 +42,7 @@ namespace Logging.Writers
         /// <summary>
         /// Opens the writer
         /// </summary>
-        void iLogWriter.open()
+        void iLogWriter.Open()
         {
             // if the date has changed, then Open the next file.
             string path = String.Format("{0}/{1}-{2}.Log", _basePath, _prefix, DateTime.Today.ToString("yyyy-MM"));
@@ -50,20 +50,20 @@ namespace Logging.Writers
             {
                 return;
             }
-            ((iLogWriter)this).close();
+            ((iLogWriter)this).Close();
 
             _current = path;
             _writer = new FileWriter(path);
-            _writer.open();
+            _writer.Open();
         }
 
         /// <summary>
         /// Writes a line out to the Log file.
         /// </summary>
-        void iLogWriter.write(Logger.eLEVEL pLevel, string pPrefix, string pMsg)
+        void iLogWriter.Write(Logger.eLEVEL pLevel, string pPrefix, string pMsg)
         {
-            ((iLogWriter)this).open();
-            _writer.write(pLevel, pPrefix, pMsg);
+            ((iLogWriter)this).Open();
+            _writer.Write(pLevel, pPrefix, pMsg);
         }
 
         /// <summary>

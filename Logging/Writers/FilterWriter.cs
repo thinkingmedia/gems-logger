@@ -3,14 +3,14 @@
     public class FilterWriter : iLogWriter
     {
         /// <summary>
-        /// The filter function.
-        /// </summary>
-        protected FilterFunc Filter { get; set; }
-
-        /// <summary>
         /// The inner writer being used.
         /// </summary>
-        private iLogWriter _writer { get; set; }
+        private readonly iLogWriter _writer;
+
+        /// <summary>
+        /// The filter function.
+        /// </summary>
+        protected FilterFunc Filter;
 
         /// <summary>
         /// Constructor
@@ -24,28 +24,28 @@
         /// <summary>
         /// Opens the writer.
         /// </summary>
-        public void open()
+        public void Open()
         {
-            _writer.open();
+            _writer.Open();
         }
 
         /// <summary>
         /// Passes the write through a filter before it goes to the inner writer.
         /// </summary>
-        public void write(Logger.eLEVEL pLevel, string pPrefix, string pMsg)
+        public void Write(Logger.eLEVEL pLevel, string pPrefix, string pMsg)
         {
             if (Filter != null && Filter(pLevel, pPrefix, pMsg))
             {
-                _writer.write(pLevel, pPrefix, pMsg);
+                _writer.Write(pLevel, pPrefix, pMsg);
             }
         }
 
         /// <summary>
         /// Closes the writer.
         /// </summary>
-        public void close()
+        public void Close()
         {
-            _writer.close();
+            _writer.Close();
         }
 
         /// <summary>

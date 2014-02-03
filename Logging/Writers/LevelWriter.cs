@@ -1,4 +1,4 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
 
 namespace Logging.Writers
 {
@@ -10,23 +10,23 @@ namespace Logging.Writers
         /// <summary>
         /// The accepted levels.
         /// </summary>
-        private readonly Logger.eLEVEL[] _levels;
+        private readonly HashSet<Logger.eLEVEL> _levels;
 
         /// <summary>
         /// Filters messages by their log level.
         /// </summary>
         private bool FilterByLevel(Logger.eLEVEL pLevel, string pPrefix, string pMsg)
         {
-            return _levels.Any(pArg=>pLevel == pArg);
+            return _levels.Contains(pLevel);
         }
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public LevelWriter(iLogWriter pWriter, Logger.eLEVEL[] pLevels)
+        public LevelWriter(iLogWriter pWriter, IEnumerable<Logger.eLEVEL> pLevels)
             : base(pWriter)
         {
-            _levels = pLevels;
+            _levels = new HashSet<Logger.eLEVEL>(pLevels);
             Filter = FilterByLevel;
         }
     }
