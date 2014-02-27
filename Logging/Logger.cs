@@ -187,7 +187,11 @@ namespace Logging
         public void Exception(Exception pExc)
         {
             // show the stack trace one line at a time
-            string[] str = pExc.ToString().Split(new[] {'\n'});
+            string[] str = pExc
+                .ToString()
+                .Replace("{", "{{")
+                .Replace("}", "}}")
+                .Split(new[] { '\n' });
             string indent = "";
             foreach (string s in str)
             {
