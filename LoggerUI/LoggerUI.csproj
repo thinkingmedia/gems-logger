@@ -48,7 +48,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Logging\Logging.csproj">
       <Project>{501504de-66c8-4430-b469-e1746bfb2d17}</Project>
-      <Name>Logging %28Public\Logging\Logging%29</Name>
+      <Name>Logging</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
