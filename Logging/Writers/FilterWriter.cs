@@ -1,5 +1,8 @@
 ﻿namespace Logging.Writers
 {
+    /// <summary>
+    /// Handles filtering of log output using a delegate function.
+    /// </summary>
     public class FilterWriter : iLogWriter
     {
         /// <summary>

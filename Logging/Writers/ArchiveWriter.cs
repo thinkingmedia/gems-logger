@@ -3,7 +3,7 @@
 namespace Logging.Writers
 {
     /// <summary>
-    /// Writes to a Log files that incremented as the current date changes.
+    /// Writes to Log files that incremented as the current date changes.
     /// </summary>
     public class ArchiveWriter : iLogWriter
     {

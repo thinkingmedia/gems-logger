@@ -3,8 +3,7 @@
 namespace Logging.Writers
 {
     /// <summary>
-    /// Only writes a log messages that take place in given
-    /// thread ID.
+    /// Only writes log messages that originate from a specific thread ID.
     /// </summary>
     public class ThreadWriter : FilterWriter
     {
