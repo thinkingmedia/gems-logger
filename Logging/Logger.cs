@@ -182,6 +182,16 @@ namespace Logging
         }
 
         /// <summary>
+        /// Escape a string so it can be sent to the logger without triggering formatting.
+        /// </summary>
+        public static string Escape(string pStr)
+        {
+            return pStr
+                .Replace("{", "{{")
+                .Replace("}", "}}");
+        }
+
+        /// <summary>
         /// Logs an Exception.
         /// </summary>
         public void Exception(Exception pExc)
@@ -189,13 +199,11 @@ namespace Logging
             // show the stack trace one line at a time
             string[] str = pExc
                 .ToString()
-                .Replace("{", "{{")
-                .Replace("}", "}}")
                 .Split(new[] { '\n' });
             string indent = "";
             foreach (string s in str)
             {
-                Error(indent + s.Trim());
+                Error(indent + Escape(s.Trim()));
                 indent = "    ";
             }
         }
