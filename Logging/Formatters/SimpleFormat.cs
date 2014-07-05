@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace Logging.Formatters
 {
@@ -12,7 +13,9 @@ namespace Logging.Formatters
         /// </summary>
         string iFormatter.format(Logger.eLEVEL pLevel, string pPrefix, string pMsg)
         {
-            return String.Format("{0}{1}", DetailFormat.Level(pLevel), pMsg);
+            int threadID = Thread.CurrentThread.ManagedThreadId;
+
+            return String.Format("[{0}:{1}] {2}{3}", pPrefix, threadID, DetailFormat.Level(pLevel), pMsg);
         }
     }
 }
