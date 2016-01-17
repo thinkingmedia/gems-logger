@@ -1,14 +1,14 @@
-﻿namespace Logging.Writers
+﻿namespace GemsLogger.Writers
 {
     /// <summary>
     /// Handles filtering of log output using a delegate function.
     /// </summary>
-    public class FilterWriter : iLogWriter
+    public class FilterWriter : ILogWriter
     {
         /// <summary>
         /// The inner writer being used.
         /// </summary>
-        private readonly iLogWriter _writer;
+        private readonly ILogWriter _writer;
 
         /// <summary>
         /// The filter function.
@@ -18,7 +18,7 @@
         /// <summary>
         /// Constructor
         /// </summary>
-        protected FilterWriter(iLogWriter pWriter)
+        protected FilterWriter(ILogWriter pWriter)
         {
             _writer = pWriter;
             Filter = null;

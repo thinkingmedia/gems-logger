@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Text;
 
-namespace Logging.Entries
+namespace GemsLogger.Entries
 {
     /// <summary>
     /// You can use this class to create dynamic log entries. The data added to the

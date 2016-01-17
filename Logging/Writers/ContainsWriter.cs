@@ -1,4 +1,4 @@
-﻿namespace Logging.Writers
+﻿namespace GemsLogger.Writers
 {
     /// <summary>
     /// Injects marker text into the log stream.
@@ -26,7 +26,7 @@
         /// <summary>
         /// Constructor
         /// </summary>
-        public ContainsWriter(iLogWriter pWriter, string pContains, bool pInvert)
+        public ContainsWriter(ILogWriter pWriter, string pContains, bool pInvert)
             : base(pWriter)
         {
             _contains = pContains;

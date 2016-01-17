@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using Logging.Exceptions;
+using GemsLogger.Exceptions;
 
-namespace Logging.Formatters
+namespace GemsLogger.Formatters
 {
     /// <summary>
     /// Adds extra details to the Log information.

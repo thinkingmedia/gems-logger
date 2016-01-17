@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 
-namespace Logging.Writers
+namespace GemsLogger.Writers
 {
     /// <summary>
     /// A list of writers that all perform writing from the log stream.
     /// </summary>
-    public class MultiWriter : List<iLogWriter>, iLogWriter
+    public class MultiWriter : List<ILogWriter>, ILogWriter
     {
         /// <summary>
         /// Opens the writer.

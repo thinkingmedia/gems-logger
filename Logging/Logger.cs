@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Logging.Entries;
-using Logging.Writers;
+using GemsLogger.Entries;
+using GemsLogger.Writers;
 
-namespace Logging
+namespace GemsLogger
 {
     /// <summary>
     /// A simply logging class.
@@ -26,7 +26,7 @@ namespace Logging
         /// <summary>
         /// Contains the list of writers that will output content to a Log storage location.
         /// </summary>
-        private static readonly List<iLogWriter> _writers = new List<iLogWriter>();
+        private static readonly List<ILogWriter> _writers = new List<ILogWriter>();
 
         /// <summary>
         /// Toggles the logging of debug messages.
@@ -80,7 +80,7 @@ namespace Logging
         /// Adds a writer to the logger.
         /// </summary>
         /// <param name="pWriter">The object that will handle writing.</param>
-        public static void Add(iLogWriter pWriter)
+        public static void Add(ILogWriter pWriter)
         {
             lock (_writers)
             {
@@ -102,7 +102,7 @@ namespace Logging
             {
                 while (_writers.Count > 0)
                 {
-                    iLogWriter writer = _writers[0];
+                    ILogWriter writer = _writers[0];
                     try
                     {
                         writer.Close();
@@ -141,7 +141,7 @@ namespace Logging
         /// </summary>
         /// <param name="pWriter"></param>
         /// <returns></returns>
-        public static bool Has(iLogWriter pWriter)
+        public static bool Has(ILogWriter pWriter)
         {
             lock (_writers)
             {
@@ -152,7 +152,7 @@ namespace Logging
         /// <summary>
         /// Removes a writer from the logger.
         /// </summary>
-        public static void Remove(iLogWriter pWriter)
+        public static void Remove(ILogWriter pWriter)
         {
             lock (_writers)
             {
@@ -247,13 +247,13 @@ namespace Logging
                 return;
             }
 
-            List<iLogWriter> writers;
+            List<ILogWriter> writers;
             lock (_writers)
             {
-                writers = new List<iLogWriter>(_writers);
+                writers = new List<ILogWriter>(_writers);
             }
 
-            foreach (iLogWriter writer in writers)
+            foreach (ILogWriter writer in writers)
             {
                 try
                 {

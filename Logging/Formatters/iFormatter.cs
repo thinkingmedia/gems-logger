@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Logging.Formatters
+namespace GemsLogger.Formatters
 {
     /// <summary>
     /// Used to handle formatting of Log lines.

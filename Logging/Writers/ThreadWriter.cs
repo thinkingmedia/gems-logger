@@ -1,6 +1,6 @@
 ﻿using System.Threading;
 
-namespace Logging.Writers
+namespace GemsLogger.Writers
 {
     /// <summary>
     /// Only writes log messages that originate from a specific thread ID.
@@ -23,7 +23,7 @@ namespace Logging.Writers
         /// <summary>
         /// Constructor
         /// </summary>
-        public ThreadWriter(iLogWriter pWriter, int pThreadID = 0)
+        public ThreadWriter(ILogWriter pWriter, int pThreadID = 0)
             : base(pWriter)
         {
             ThreadID = pThreadID;

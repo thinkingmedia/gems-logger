@@ -1,13 +1,13 @@
 ﻿using System;
 using System.IO;
-using Logging.Exceptions;
+using GemsLogger.Exceptions;
 
-namespace Logging.Writers
+namespace GemsLogger.Writers
 {
     /// <summary>
     /// Writes each entry out to a text file.
     /// </summary>
-    public class FileWriter : iLogWriter, IDisposable
+    public class FileWriter : ILogWriter, IDisposable
     {
         /// <summary>
         /// The file to Write too.
@@ -24,13 +24,13 @@ namespace Logging.Writers
         /// </summary>
         void IDisposable.Dispose()
         {
-            ((iLogWriter)this).Close();
+            ((ILogWriter)this).Close();
         }
 
         /// <summary>
         /// Closes the Log file.
         /// </summary>
-        void iLogWriter.Close()
+        void ILogWriter.Close()
         {
             if (_writer != null)
             {
@@ -42,7 +42,7 @@ namespace Logging.Writers
         /// <summary>
         /// Opens the file file.
         /// </summary>
-        void iLogWriter.Open()
+        void ILogWriter.Open()
         {
             if (_writer == null)
             {
@@ -53,7 +53,7 @@ namespace Logging.Writers
         /// <summary>
         /// Writes a line to the Log file.
         /// </summary>
-        void iLogWriter.Write(Logger.eLEVEL pLevel, string pPrefix, string pMsg)
+        void ILogWriter.Write(Logger.eLEVEL pLevel, string pPrefix, string pMsg)
         {
             if (_writer == null)
             {

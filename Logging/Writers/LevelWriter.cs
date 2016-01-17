@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Logging.Writers
+namespace GemsLogger.Writers
 {
     /// <summary>
     /// Only writes log messages for a given log level (i.e. Error messages only).
@@ -23,7 +23,7 @@ namespace Logging.Writers
         /// <summary>
         /// Constructor
         /// </summary>
-        public LevelWriter(iLogWriter pWriter, IEnumerable<Logger.eLEVEL> pLevels)
+        public LevelWriter(ILogWriter pWriter, IEnumerable<Logger.eLEVEL> pLevels)
             : base(pWriter)
         {
             _levels = new HashSet<Logger.eLEVEL>(pLevels);

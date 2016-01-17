@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Logging.Formatters;
+using GemsLogger.Formatters;
 
-namespace Logging.Writers
+namespace GemsLogger.Writers
 {
     /// <summary>
     /// Performs formatting of the Log message, and passes it onto another writer.
     /// </summary>
-    public class FormatWriter : iLogWriter
+    public class FormatWriter : ILogWriter
     {
         /// <summary>
         /// A list of string formatters that will be used.
@@ -17,7 +17,7 @@ namespace Logging.Writers
         /// <summary>
         /// The writer object that will perform that actual writing.
         /// </summary>
-        private readonly iLogWriter _writer;
+        private readonly ILogWriter _writer;
 
         /// <summary>
         /// Adds a formatter to the list.
@@ -30,7 +30,7 @@ namespace Logging.Writers
         /// <summary>
         /// Close the inner writer.
         /// </summary>
-        void iLogWriter.Close()
+        void ILogWriter.Close()
         {
             _writer.Close();
         }
@@ -38,7 +38,7 @@ namespace Logging.Writers
         /// <summary>
         /// Open the inner writer.
         /// </summary>
-        void iLogWriter.Open()
+        void ILogWriter.Open()
         {
             _writer.Open();
         }
@@ -49,7 +49,7 @@ namespace Logging.Writers
         /// <param name="pLevel"></param>
         /// <param name="pPrefix"></param>
         /// <param name="pMsg"></param>
-        void iLogWriter.Write(Logger.eLEVEL pLevel, string pPrefix, string pMsg)
+        void ILogWriter.Write(Logger.eLEVEL pLevel, string pPrefix, string pMsg)
         {
             pMsg = _formatters.Aggregate(pMsg, (pCurrent, pFormat)=>pFormat.format(pLevel, pPrefix, pCurrent));
             _writer.Write(pLevel, pPrefix, pMsg);
@@ -58,7 +58,7 @@ namespace Logging.Writers
         /// <summary>
         /// Constructor
         /// </summary>
-        private FormatWriter(iLogWriter pWriter)
+        private FormatWriter(ILogWriter pWriter)
         {
             _writer = pWriter;
         }
@@ -66,7 +66,7 @@ namespace Logging.Writers
         /// <summary>
         /// Constructor
         /// </summary>
-        public FormatWriter(iLogWriter pWriter, iFormatter pFormatter)
+        public FormatWriter(ILogWriter pWriter, iFormatter pFormatter)
             : this(pWriter)
         {
             Add(pFormatter);

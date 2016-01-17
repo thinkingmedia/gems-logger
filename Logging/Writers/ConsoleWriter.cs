@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace Logging.Writers
+namespace GemsLogger.Writers
 {
     /// <summary>
     /// Sends logger output to the console.
     /// </summary>
-    public class ConsoleWriter : iLogWriter
+    public class ConsoleWriter : ILogWriter
     {
         /// <summary>
         /// Send debug to console

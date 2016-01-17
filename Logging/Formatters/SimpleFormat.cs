@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 
-namespace Logging.Formatters
+namespace GemsLogger.Formatters
 {
     /// <summary>
     /// Writes the Log message with just the level details.

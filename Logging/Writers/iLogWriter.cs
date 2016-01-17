@@ -1,11 +1,11 @@
 ﻿using System;
 
-namespace Logging.Writers
+namespace GemsLogger.Writers
 {
     /// <summary>
     /// A single method used to Write to a Log output target.
     /// </summary>
-    public interface iLogWriter
+    public interface ILogWriter
     {
         /// <summary>
         /// Closes the writer.

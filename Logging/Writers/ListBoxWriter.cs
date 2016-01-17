@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace Logging.Writers
+namespace GemsLogger.Writers
 {
     /// <summary>
     /// Logs the output to a ListBox control.
     /// </summary>
-    public class ListBoxWriter : iLogWriter
+    public class ListBoxWriter : ILogWriter
     {
         /// <summary>
         /// The list box control.
@@ -42,21 +42,21 @@ namespace Logging.Writers
         /// <summary>
         /// Closes the writer.
         /// </summary>
-        void iLogWriter.Close()
+        void ILogWriter.Close()
         {
         }
 
         /// <summary>
         /// Opens the writer
         /// </summary>
-        void iLogWriter.Open()
+        void ILogWriter.Open()
         {
         }
 
         /// <summary>
         /// Writes a line to the writer.
         /// </summary>
-        void iLogWriter.Write(Logger.eLEVEL pLevel, string pPrefix, string pMsg)
+        void ILogWriter.Write(Logger.eLEVEL pLevel, string pPrefix, string pMsg)
         {
             if (_listbox.InvokeRequired)
             {

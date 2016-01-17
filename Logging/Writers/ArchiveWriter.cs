@@ -1,11 +1,11 @@
 ﻿using System;
 
-namespace Logging.Writers
+namespace GemsLogger.Writers
 {
     /// <summary>
     /// Writes to Log files that incremented as the current date changes.
     /// </summary>
-    public class ArchiveWriter : iLogWriter
+    public class ArchiveWriter : ILogWriter
     {
         /// <summary>
         /// The output folder.
@@ -25,12 +25,12 @@ namespace Logging.Writers
         /// <summary>
         /// The writer for the Log file.
         /// </summary>
-        private iLogWriter _writer;
+        private ILogWriter _writer;
 
         /// <summary>
         /// Closes the current writer.
         /// </summary>
-        void iLogWriter.Close()
+        void ILogWriter.Close()
         {
             if (_writer != null)
             {
@@ -42,7 +42,7 @@ namespace Logging.Writers
         /// <summary>
         /// Opens the writer
         /// </summary>
-        void iLogWriter.Open()
+        void ILogWriter.Open()
         {
             // if the date has changed, then Open the next file.
             string path = String.Format("{0}/{1}-{2}.Log", _basePath, _prefix, DateTime.Today.ToString("yyyy-MM"));
@@ -50,7 +50,7 @@ namespace Logging.Writers
             {
                 return;
             }
-            ((iLogWriter)this).Close();
+            ((ILogWriter)this).Close();
 
             _current = path;
             _writer = new FileWriter(path);
@@ -60,9 +60,9 @@ namespace Logging.Writers
         /// <summary>
         /// Writes a line out to the Log file.
         /// </summary>
-        void iLogWriter.Write(Logger.eLEVEL pLevel, string pPrefix, string pMsg)
+        void ILogWriter.Write(Logger.eLEVEL pLevel, string pPrefix, string pMsg)
         {
-            ((iLogWriter)this).Open();
+            ((ILogWriter)this).Open();
             _writer.Write(pLevel, pPrefix, pMsg);
         }
 

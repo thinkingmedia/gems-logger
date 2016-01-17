@@ -8,8 +8,8 @@
     <ProjectGuid>{501504DE-66C8-4430-B469-E1746BFB2D17}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Logging</RootNamespace>
-    <AssemblyName>Logging</AssemblyName>
+    <RootNamespace>GemsLogger</RootNamespace>
+    <AssemblyName>GemsLogger</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -49,7 +49,7 @@
     <Compile Include="Writers\FileWriter.cs" />
     <Compile Include="Writers\FilterWriter.cs" />
     <Compile Include="Writers\FormatWriter.cs" />
-    <Compile Include="Writers\iLogWriter.cs" />
+    <Compile Include="Writers\ILogWriter.cs" />
     <Compile Include="Writers\LevelWriter.cs" />
     <Compile Include="Writers\ListBoxWriter.cs" />
     <Compile Include="Writers\ContainsWriter.cs" />

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Logging.Exceptions
+namespace GemsLogger.Exceptions
 {
     /// <summary>
     /// Exceptions related to the formatters.

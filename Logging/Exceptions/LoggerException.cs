@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Logging.Exceptions
+namespace GemsLogger.Exceptions
 {
     /// <summary>
     /// The base exception for all exceptions in this library.

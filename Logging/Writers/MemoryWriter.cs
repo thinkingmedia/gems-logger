@@ -1,11 +1,11 @@
 ﻿using System.Text;
 
-namespace Logging.Writers
+namespace GemsLogger.Writers
 {
     /// <summary>
     /// Stores the Log entries in memory.
     /// </summary>
-    public class MemoryWriter : iLogWriter
+    public class MemoryWriter : ILogWriter
     {
         /// <summary>
         /// The buffer.
@@ -15,7 +15,7 @@ namespace Logging.Writers
         /// <summary>
         /// Close the memory buffer.
         /// </summary>
-        void iLogWriter.Close()
+        void ILogWriter.Close()
         {
             _buffer = null;
         }
@@ -23,7 +23,7 @@ namespace Logging.Writers
         /// <summary>
         /// Open the memory buffer.
         /// </summary>
-        void iLogWriter.Open()
+        void ILogWriter.Open()
         {
             _buffer = new StringBuilder();
         }
@@ -31,7 +31,7 @@ namespace Logging.Writers
         /// <summary>
         /// Writes to the member buffer.
         /// </summary>
-        void iLogWriter.Write(Logger.eLEVEL pLevel, string pPrefix, string pMsg)
+        void ILogWriter.Write(Logger.eLEVEL pLevel, string pPrefix, string pMsg)
         {
             if (_buffer == null)
             {

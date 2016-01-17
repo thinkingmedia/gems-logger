@@ -1,11 +1,11 @@
 ﻿using System.Diagnostics;
 
-namespace Logging.Writers
+namespace GemsLogger.Writers
 {
     /// <summary>
     /// Sends output to the Visual Studio immediate window.
     /// </summary>
-    public class VisualStudioWriter : iLogWriter
+    public class VisualStudioWriter : ILogWriter
     {
         /// <summary>
         /// Closes the writer.
