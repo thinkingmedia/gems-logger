@@ -1,4 +1,4 @@
-#gems-logger [![Build Status](https://travis-ci.org/thinkingmedia/gems-logger.svg?branch=master)](https://travis-ci.org/thinkingmedia/gems-logger)
+#gems-logger [![Build Status](https://travis-ci.org/thinkingmedia/gems-logger.svg?branch=master)](https://travis-ci.org/thinkingmedia/gems-logger) [![Code Climate](https://codeclimate.com/github/thinkingmedia/gems-logger/badges/gpa.svg)](https://codeclimate.com/github/thinkingmedia/gems-logger)  [![Test Coverage](https://codeclimate.com/github/thinkingmedia/gems-logger/badges/coverage.svg)](https://codeclimate.com/github/thinkingmedia/gems-logger/coverage)
 
 A multithread friendly logger for C# that uses stack-able writers and a UI component 
 for watching the output. Easy to use, reliable and used by me everyday.
