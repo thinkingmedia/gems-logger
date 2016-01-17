@@ -64,7 +64,7 @@ namespace GemsLogger
 #if DEBUG
             System.Diagnostics.Debug.WriteLine(pMsg);
 #else
-                    Console.WriteLine(pMsg);
+                    Console.WriteLine(msg);
 #endif
         }
 
@@ -79,17 +79,17 @@ namespace GemsLogger
         /// <summary>
         /// Adds a writer to the logger.
         /// </summary>
-        /// <param name="pWriter">The object that will handle writing.</param>
-        public static void Add(ILogWriter pWriter)
+        /// <param name="writer">The object that will handle writing.</param>
+        public static void Add(ILogWriter writer)
         {
             lock (_writers)
             {
-                if (_writers.Contains(pWriter))
+                if (_writers.Contains(writer))
                 {
                     return;
                 }
-                pWriter.Open();
-                _writers.Add(pWriter);
+                writer.Open();
+                _writers.Add(writer);
             }
         }
 
@@ -123,70 +123,70 @@ namespace GemsLogger
         /// <summary>
         /// Creates a new logger the uses the given type as a description.
         /// </summary>
-        public static Logger Create(Type pType)
+        public static Logger Create(Type type)
         {
-            return new Logger(pType.Name);
+            return new Logger(type.Name);
         }
 
         /// <summary>
         /// Logs an Exception to the Windows event Log.
         /// </summary>
-        public static void EventLog(Exception pEx)
+        public static void EventLog(Exception ex)
         {
-            EventLog(pEx.Message);
+            EventLog(ex.Message);
         }
 
         /// <summary>
         /// Checks if the logger has an instance of the writer.
         /// </summary>
-        /// <param name="pWriter"></param>
+        /// <param name="writer"></param>
         /// <returns></returns>
-        public static bool Has(ILogWriter pWriter)
+        public static bool Has(ILogWriter writer)
         {
             lock (_writers)
             {
-                return _writers.Contains(pWriter);
+                return _writers.Contains(writer);
             }
         }
 
         /// <summary>
         /// Removes a writer from the logger.
         /// </summary>
-        public static void Remove(ILogWriter pWriter)
+        public static void Remove(ILogWriter writer)
         {
             lock (_writers)
             {
-                if (!_writers.Contains(pWriter))
+                if (!_writers.Contains(writer))
                 {
                     return;
                 }
-                pWriter.Close();
-                _writers.Remove(pWriter);
+                writer.Close();
+                _writers.Remove(writer);
             }
         }
 
         /// <summary>
         /// Logs debug information.
         /// </summary>
-        public void Debug(string pStr, params object[] pArgs)
+        public void Debug(string str, params object[] args)
         {
-            Log(eLEVEL.DEBUG, string.Format(pStr, pArgs));
+            Log(eLEVEL.DEBUG, string.Format(str, args));
         }
 
         /// <summary>
         /// Logs an Error.
         /// </summary>
-        public void Error(string pStr, params object[] pArgs)
+        public void Error(string str, params object[] args)
         {
-            Log(eLEVEL.ERROR, string.Format(pStr, pArgs));
+            Log(eLEVEL.ERROR, string.Format(str, args));
         }
 
         /// <summary>
         /// Escape a string so it can be sent to the logger without triggering formatting.
         /// </summary>
-        public static string Escape(string pStr)
+        public static string Escape(string str)
         {
-            return pStr
+            return str
                 .Replace("{", "{{")
                 .Replace("}", "}}");
         }
@@ -194,10 +194,10 @@ namespace GemsLogger
         /// <summary>
         /// Logs an Exception.
         /// </summary>
-        public void Exception(Exception pExc)
+        public void Exception(Exception exc)
         {
             // show the stack trace one line at a time
-            string[] str = pExc
+            string[] str = exc
                 .ToString()
                 .Split(new[] { '\n' });
             string indent = "";
@@ -211,38 +211,38 @@ namespace GemsLogger
         /// <summary>
         /// Logs information.
         /// </summary>
-        public void Fine(string pStr, params object[] pArgs)
+        public void Fine(string str, params object[] args)
         {
-            Log(eLEVEL.FINE, string.Format(pStr, pArgs));
+            Log(eLEVEL.FINE, string.Format(str, args));
         }
 
         /// <summary>
         /// Logs information.
         /// </summary>
-        public void Finer(string pStr, params object[] pArgs)
+        public void Finer(string str, params object[] args)
         {
-            Log(eLEVEL.FINER, string.Format(pStr, pArgs));
+            Log(eLEVEL.FINER, string.Format(str, args));
         }
 
         /// <summary>
         /// Logs Finest information.
         /// </summary>
-        public void Finest(string pStr, params object[] pArgs)
+        public void Finest(string str, params object[] args)
         {
-            Log(eLEVEL.FINEST, string.Format(pStr, pArgs));
+            Log(eLEVEL.FINEST, string.Format(str, args));
         }
 
         /// <summary>
         /// Logs an event.
         /// </summary>
-        public void Log(eLEVEL pLevel, string pMsg)
+        public void Log(eLEVEL level, string msg)
         {
-            if (pLevel == eLEVEL.DEBUG && !LogDebug)
+            if (level == eLEVEL.DEBUG && !LogDebug)
             {
                 return;
             }
 
-            if (pLevel == eLEVEL.FINEST && !LogFinest)
+            if (level == eLEVEL.FINEST && !LogFinest)
             {
                 return;
             }
@@ -257,7 +257,7 @@ namespace GemsLogger
             {
                 try
                 {
-                    writer.Write(pLevel, _prefix, pMsg);
+                    writer.Write(level, _prefix, msg);
                 }
                 catch (Exception e)
                 {
@@ -273,9 +273,9 @@ namespace GemsLogger
         /// <summary>
         /// Logs a LogEntry.
         /// </summary>
-        public void Log(LogEntry pEntry)
+        public void Log(LogEntry entry)
         {
-            Log(pEntry.Level, pEntry.ToString());
+            Log(entry.Level, entry.ToString());
         }
     }
 }
