@@ -1,7 +1,7 @@
 language: csharp
 solution: gems-logger.sln
 install:
-	- nuget restore gems-logger.sln
+    - nuget restore gems-logger.sln
 script:
-	- xbuild /p:Configuration=Release gems-logger.sln
-	- mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./LoggerTest/bin/Release/LoggerTest.dll
+    - xbuild /p:Configuration=Release gems-logger.sln
+    - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./LoggerTest/bin/Release/LoggerTest.dll
