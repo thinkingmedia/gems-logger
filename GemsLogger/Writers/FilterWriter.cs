@@ -18,9 +18,9 @@
         /// <summary>
         /// Constructor
         /// </summary>
-        protected FilterWriter(ILogWriter pWriter)
+        protected FilterWriter(ILogWriter writer)
         {
-            _writer = pWriter;
+            _writer = writer;
             Filter = null;
         }
 
@@ -35,11 +35,11 @@
         /// <summary>
         /// Passes the write through a filter before it goes to the inner writer.
         /// </summary>
-        public void Write(Logger.eLEVEL pLevel, string pPrefix, string pMsg)
+        public void Write(Logger.eLEVEL level, string prefix, string msg)
         {
-            if (Filter != null && Filter(pLevel, pPrefix, pMsg))
+            if (Filter != null && Filter(level, prefix, msg))
             {
-                _writer.Write(pLevel, pPrefix, pMsg);
+                _writer.Write(level, prefix, msg);
             }
         }
 
@@ -54,6 +54,6 @@
         /// <summary>
         /// The filter method.
         /// </summary>
-        protected delegate bool FilterFunc(Logger.eLEVEL pLevel, string pPrefix, string pMsg);
+        protected delegate bool FilterFunc(Logger.eLEVEL level, string prefix, string msg);
     }
 }

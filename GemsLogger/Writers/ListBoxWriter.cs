@@ -56,24 +56,24 @@ namespace GemsLogger.Writers
         /// <summary>
         /// Writes a line to the writer.
         /// </summary>
-        void ILogWriter.Write(Logger.eLEVEL pLevel, string pPrefix, string pMsg)
+        void ILogWriter.Write(Logger.eLEVEL level, string prefix, string msg)
         {
             if (_listbox.InvokeRequired)
             {
-                _listbox.BeginInvoke(new Action(()=>Append(pMsg)));
+                _listbox.BeginInvoke(new Action(()=>Append(msg)));
             }
             else
             {
-                Append(pMsg);
+                Append(msg);
             }
         }
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public ListBoxWriter(ListBox pListBox)
+        public ListBoxWriter(ListBox listBox)
         {
-            _listbox = pListBox;
+            _listbox = listBox;
         }
     }
 }

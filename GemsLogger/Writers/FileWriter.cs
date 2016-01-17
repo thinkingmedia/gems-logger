@@ -53,27 +53,27 @@ namespace GemsLogger.Writers
         /// <summary>
         /// Writes a line to the Log file.
         /// </summary>
-        void ILogWriter.Write(Logger.eLEVEL pLevel, string pPrefix, string pMsg)
+        void ILogWriter.Write(Logger.eLEVEL level, string prefix, string msg)
         {
             if (_writer == null)
             {
                 return;
             }
-            _writer.WriteLine(pMsg);
+            _writer.WriteLine(msg);
             _writer.Flush();
         }
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public FileWriter(String pPath)
+        public FileWriter(string path)
         {
-            if (string.IsNullOrWhiteSpace(pPath))
+            if (string.IsNullOrWhiteSpace(path))
             {
                 throw new LoggerException("Path can not be empty or null.");
             }
 
-            _path = pPath;
+            _path = path;
 
             string dir = Path.GetDirectoryName(_path);
             if (dir == null)

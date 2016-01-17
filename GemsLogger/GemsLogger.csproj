@@ -40,7 +40,7 @@
     <Compile Include="Exceptions\FormatterException.cs" />
     <Compile Include="Exceptions\LoggerException.cs" />
     <Compile Include="Formatters\DetailFormat.cs" />
-    <Compile Include="Formatters\iFormatter.cs" />
+    <Compile Include="Formatters\IFormatter.cs" />
     <Compile Include="Formatters\SimpleFormat.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -19,7 +19,7 @@ namespace GemsLogger.Formatters
         /// <summary>
         /// Adds details about a Log entry.
         /// </summary>
-        String IFormatter.format(Logger.eLEVEL pLevel, String pPrefix, String pMsg)
+        string IFormatter.Format(Logger.eLEVEL level, string prefix, string msg)
         {
             lock (_codes)
             {
@@ -28,54 +28,54 @@ namespace GemsLogger.Formatters
                 int threadID = Thread.CurrentThread.ManagedThreadId;
                 string code = _codes.ContainsKey(threadID) ? _codes[threadID] : "thread";
 
-                return String.Format(format, code, threadID, DateTime.Now, pPrefix, Level(pLevel), pMsg);
+                return string.Format(format, code, threadID, DateTime.Now, prefix, Level(level), msg);
             }
         }
 
         /// <summary>
         /// Converts the LogLevel to string (INFO is blank).
         /// </summary>
-        public static String Level(Logger.eLEVEL pLevel)
+        public static string Level(Logger.eLEVEL level)
         {
-            return pLevel != Logger.eLEVEL.FINE ? String.Format(" [{0}] ", pLevel.ToString().ToUpper()) : " ";
+            return level != Logger.eLEVEL.FINE ? string.Format(" [{0}] ", level.ToString().ToUpper()) : " ";
         }
 
         /// <summary>
         /// Associates a job code with the current thread ID.
         /// </summary>
-        public static void Register(string pCode)
+        public static void Register(string code)
         {
-            Register(Thread.CurrentThread.ManagedThreadId, pCode);
+            Register(Thread.CurrentThread.ManagedThreadId, code);
         }
 
         /// <summary>
         /// Associates a job code with a worker thread ID.
         /// </summary>
-        public static void Register(int pThreadID, string pCode)
+        public static void Register(int threadID, string code)
         {
             lock (_codes)
             {
-                if (_codes.ContainsValue(pCode))
+                if (_codes.ContainsValue(code))
                 {
-                    throw new FormatterException("{0} code already registered.", pCode);
+                    throw new FormatterException("{0} code already registered.", code);
                 }
-                _codes.Add(pThreadID, pCode);
+                _codes.Add(threadID, code);
             }
         }
 
         /// <summary>
         /// Removes the association between a job code and a worker thread ID.
         /// </summary>
-        public static void Unregister(string pCode)
+        public static void Unregister(string code)
         {
             lock (_codes)
             {
-                if (!_codes.ContainsValue(pCode))
+                if (!_codes.ContainsValue(code))
                 {
                     return;
                 }
 
-                KeyValuePair<int, string> pair = _codes.First(pPair=>pPair.Value == pCode);
+                KeyValuePair<int, string> pair = _codes.First(pPair=>pPair.Value == code);
                 _codes.Remove(pair.Key);
             }
         }
@@ -83,15 +83,15 @@ namespace GemsLogger.Formatters
         /// <summary>
         /// Removes the association between a job code and a worker thread ID.
         /// </summary>
-        public static void Unregister(int pThreadID)
+        public static void Unregister(int threadID)
         {
             lock (_codes)
             {
-                if (!_codes.ContainsKey(pThreadID))
+                if (!_codes.ContainsKey(threadID))
                 {
                     return;
                 }
-                _codes.Remove(pThreadID);
+                _codes.Remove(threadID);
             }
         }
     }

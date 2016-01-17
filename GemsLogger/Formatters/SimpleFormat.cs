@@ -11,11 +11,11 @@ namespace GemsLogger.Formatters
         /// <summary>
         /// Adds just the Log level to the entry.
         /// </summary>
-        string IFormatter.format(Logger.eLEVEL pLevel, string pPrefix, string pMsg)
+        string IFormatter.Format(Logger.eLEVEL level, string prefix, string msg)
         {
             int threadID = Thread.CurrentThread.ManagedThreadId;
 
-            return String.Format("[{0}:{1}] {2}{3}", pPrefix, threadID, DetailFormat.Level(pLevel), pMsg);
+            return string.Format("[{0}:{1}] {2}{3}", prefix, threadID, DetailFormat.Level(level), msg);
         }
     }
 }

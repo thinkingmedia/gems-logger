@@ -10,6 +10,6 @@ namespace GemsLogger.Formatters
         /// <summary>
         /// Formats a Log entry.
         /// </summary>
-        String format(Logger.eLEVEL pLevel, String pPrefix, String pMsg);
+        string Format(Logger.eLEVEL level, string prefix, string msg);
     }
 }

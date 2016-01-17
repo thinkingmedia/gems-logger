@@ -12,15 +12,15 @@ namespace GemsLogger.Writers
         /// </summary>
         public void Open()
         {
-            ForEach(pWriter=>pWriter.Open());
+            ForEach(writer=>writer.Open());
         }
 
         /// <summary>
         /// Writes a line.
         /// </summary>
-        public void Write(Logger.eLEVEL pLevel, string pPrefix, string pMsg)
+        public void Write(Logger.eLEVEL level, string prefix, string msg)
         {
-            ForEach(pWriter=>pWriter.Write(pLevel, pPrefix, pMsg));
+            ForEach(pWriter=>pWriter.Write(level, prefix, msg));
         }
 
         /// <summary>

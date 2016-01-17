@@ -22,9 +22,9 @@ namespace GemsLogger.Writers
         /// <summary>
         /// Adds a formatter to the list.
         /// </summary>
-        private void Add(IFormatter pFormatter)
+        private void Add(IFormatter formatter)
         {
-            _formatters.Add(pFormatter);
+            _formatters.Add(formatter);
         }
 
         /// <summary>
@@ -46,38 +46,38 @@ namespace GemsLogger.Writers
         /// <summary>
         /// Writes the message to the Log file, after being formatted.
         /// </summary>
-        /// <param name="pLevel"></param>
-        /// <param name="pPrefix"></param>
-        /// <param name="pMsg"></param>
-        void ILogWriter.Write(Logger.eLEVEL pLevel, string pPrefix, string pMsg)
+        /// <param name="level"></param>
+        /// <param name="prefix"></param>
+        /// <param name="msg"></param>
+        void ILogWriter.Write(Logger.eLEVEL level, string prefix, string msg)
         {
-            pMsg = _formatters.Aggregate(pMsg, (pCurrent, pFormat)=>pFormat.format(pLevel, pPrefix, pCurrent));
-            _writer.Write(pLevel, pPrefix, pMsg);
+            msg = _formatters.Aggregate(msg, (current, format)=>format.Format(level, prefix, current));
+            _writer.Write(level, prefix, msg);
         }
 
         /// <summary>
         /// Constructor
         /// </summary>
-        private FormatWriter(ILogWriter pWriter)
+        private FormatWriter(ILogWriter writer)
         {
-            _writer = pWriter;
+            _writer = writer;
         }
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public FormatWriter(ILogWriter pWriter, IFormatter pFormatter)
-            : this(pWriter)
+        public FormatWriter(ILogWriter writer, IFormatter formatter)
+            : this(writer)
         {
-            Add(pFormatter);
+            Add(formatter);
         }
 
         /// <summary>
         /// Removes a formatter from the list.
         /// </summary>
-        public void Remove(IFormatter pFormatter)
+        public void Remove(IFormatter formatter)
         {
-            _formatters.Remove(pFormatter);
+            _formatters.Remove(formatter);
         }
     }
 }

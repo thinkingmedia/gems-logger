@@ -31,7 +31,7 @@ namespace GemsLogger.Writers
         /// <summary>
         /// Writes to the member buffer.
         /// </summary>
-        void ILogWriter.Write(Logger.eLEVEL pLevel, string pPrefix, string pMsg)
+        void ILogWriter.Write(Logger.eLEVEL level, string prefix, string msg)
         {
             if (_buffer == null)
             {
@@ -40,14 +40,14 @@ namespace GemsLogger.Writers
 
             lock (_buffer)
             {
-                _buffer.AppendLine(pMsg);
+                _buffer.AppendLine(msg);
             }
         }
 
         /// <summary>
         /// Clears the contents of the memory buffer.
         /// </summary>
-        public void clear()
+        public void Clear()
         {
             _buffer.Clear();
         }

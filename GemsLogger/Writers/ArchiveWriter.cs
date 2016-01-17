@@ -60,21 +60,21 @@ namespace GemsLogger.Writers
         /// <summary>
         /// Writes a line out to the Log file.
         /// </summary>
-        void ILogWriter.Write(Logger.eLEVEL pLevel, string pPrefix, string pMsg)
+        void ILogWriter.Write(Logger.eLEVEL level, string prefix, string msg)
         {
             ((ILogWriter)this).Open();
-            _writer.Write(pLevel, pPrefix, pMsg);
+            _writer.Write(level, prefix, msg);
         }
 
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="pBasePath">The folder to store Log files.</param>
-        /// <param name="pPrefix">Name of the Log file.</param>
-        public ArchiveWriter(string pBasePath, string pPrefix)
+        /// <param name="basePath">The folder to store Log files.</param>
+        /// <param name="prefix">Name of the Log file.</param>
+        public ArchiveWriter(string basePath, string prefix)
         {
-            _basePath = pBasePath;
-            _prefix = pPrefix;
+            _basePath = basePath;
+            _prefix = prefix;
         }
     }
 }

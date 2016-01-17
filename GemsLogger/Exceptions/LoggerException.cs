@@ -10,16 +10,16 @@ namespace GemsLogger.Exceptions
         /// <summary>
         /// String Format constructor
         /// </summary>
-        public LoggerException(string pMessage, params object[] pValues)
-            : base(string.Format(pMessage, pValues))
+        public LoggerException(string message, params object[] values)
+            : base(string.Format(message, values))
         {
         }
 
         /// <summary>
         /// Inner exception constructor
         /// </summary>
-        public LoggerException(string pMessage, Exception pInner)
-            : base(pMessage, pInner)
+        public LoggerException(string message, Exception inner)
+            : base(message, inner)
         {
         }
     }

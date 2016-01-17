@@ -15,16 +15,16 @@ namespace GemsLogger.Writers
         /// <summary>
         /// Filters messages by their log level.
         /// </summary>
-        private bool FilterByLevel(Logger.eLEVEL pLevel, string pPrefix, string pMsg)
+        private bool FilterByLevel(Logger.eLEVEL level, string prefix, string msg)
         {
-            return _levels.Contains(pLevel);
+            return _levels.Contains(level);
         }
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public LevelWriter(ILogWriter pWriter, IEnumerable<Logger.eLEVEL> pLevels)
-            : base(pWriter)
+        public LevelWriter(ILogWriter writer, IEnumerable<Logger.eLEVEL> pLevels)
+            : base(writer)
         {
             _levels = new HashSet<Logger.eLEVEL>(pLevels);
             Filter = FilterByLevel;

@@ -18,19 +18,19 @@
         /// <summary>
         /// The filter function.
         /// </summary>
-        private bool ThreadFilter(Logger.eLEVEL pLevel, string pPrefix, string pMsg)
+        private bool ThreadFilter(Logger.eLEVEL level, string prefix, string msg)
         {
-            return _invert ? !pMsg.Contains(_contains) : pMsg.Contains(_contains);
+            return _invert ? !msg.Contains(_contains) : msg.Contains(_contains);
         }
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public ContainsWriter(ILogWriter pWriter, string pContains, bool pInvert)
-            : base(pWriter)
+        public ContainsWriter(ILogWriter writer, string contains, bool invert)
+            : base(writer)
         {
-            _contains = pContains;
-            _invert = pInvert;
+            _contains = contains;
+            _invert = invert;
             Filter = ThreadFilter;
         }
     }

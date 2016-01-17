@@ -16,10 +16,10 @@ namespace GemsLogger.Writers
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="pDebug">True to send debug output to the console.</param>
-        public ConsoleWriter(bool pDebug)
+        /// <param name="debug">True to send debug output to the console.</param>
+        public ConsoleWriter(bool debug)
         {
-            _debug = pDebug;
+            _debug = debug;
         }
 
         /// <summary>
@@ -39,25 +39,25 @@ namespace GemsLogger.Writers
         /// <summary>
         /// Writes a line.
         /// </summary>
-        public void Write(Logger.eLEVEL pLevel, string pPrefix, string pMsg)
+        public void Write(Logger.eLEVEL level, string prefix, string msg)
         {
-            switch (pLevel)
+            switch (level)
             {
                 case Logger.eLEVEL.ERROR:
-                    Console.Error.WriteLine(pMsg);
+                    Console.Error.WriteLine(msg);
                     break;
                 case Logger.eLEVEL.DEBUG:
                     if (_debug)
                     {
-                        Console.WriteLine(pMsg);
+                        Console.WriteLine(msg);
                     }
                     else
                     {
-                        Debug.WriteLine(pMsg);
+                        Debug.WriteLine(msg);
                     }
                     break;
                 default:
-                    Console.WriteLine(pMsg);
+                    Console.WriteLine(msg);
                     break;
             }
         }

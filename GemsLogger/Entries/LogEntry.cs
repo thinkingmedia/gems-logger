@@ -33,30 +33,30 @@ namespace GemsLogger.Entries
         /// <summary>
         /// Checks parameters for null before writing to builder.
         /// </summary>
-        private static void Log(StringBuilder pBuild, bool pQuoted, string pStr, params object[] pArgs)
+        private static void Log(StringBuilder build, bool quoted, string msg, params object[] args)
         {
-            if (string.IsNullOrEmpty(pStr))
+            if (string.IsNullOrEmpty(msg))
             {
                 return;
             }
-            string str = string.Format(pStr, pArgs);
-            if (pQuoted)
+            string str = string.Format(msg, args);
+            if (quoted)
             {
                 str = string.Format("\"{0}\"", str);
             }
-            if (pBuild.Length > 0 && str.Length > 0)
+            if (build.Length > 0 && str.Length > 0)
             {
-                pBuild.Append(" ");
+                build.Append(" ");
             }
-            pBuild.Append(str);
+            build.Append(str);
         }
 
         /// <summary>
         /// Constructor
         /// </summary>
-        private LogEntry(Logger.eLEVEL pLevel = Logger.eLEVEL.FINE)
+        private LogEntry(Logger.eLEVEL level = Logger.eLEVEL.FINE)
         {
-            Level = pLevel;
+            Level = level;
             _prefix = new StringBuilder();
             _body = new StringBuilder();
             _tail = new StringBuilder();
@@ -65,19 +65,19 @@ namespace GemsLogger.Entries
         /// <summary>
         /// Constructor
         /// </summary>
-        public LogEntry(string pStr, params object[] pArgs)
+        public LogEntry(string str, params object[] args)
             : this()
         {
-            Add(pStr, pArgs);
+            Add(str, args);
         }
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public LogEntry(Logger.eLEVEL pLevel, string pStr, params object[] pArgs)
-            : this(pLevel)
+        public LogEntry(Logger.eLEVEL level, string str, params object[] args)
+            : this(level)
         {
-            Add(pStr, pArgs);
+            Add(str, args);
         }
 
         /// <summary>
@@ -92,49 +92,49 @@ namespace GemsLogger.Entries
         /// <summary>
         /// Adds text to the entry.
         /// </summary>
-        public void Add(string pStr, params object[] pArgs)
+        public void Add(string str, params object[] args)
         {
-            Log(_body, false, pStr, pArgs);
+            Log(_body, false, str, args);
         }
 
         /// <summary>
         /// Adds the text to the body of the entry surrounded by quotes.
         /// </summary>
-        public void AddQuote(string pStr, params object[] pArgs)
+        public void AddQuote(string str, params object[] args)
         {
-            Log(_body, true, pStr, pArgs);
+            Log(_body, true, str, args);
         }
 
         /// <summary>
         /// Adds text to the start of the entry.
         /// </summary>
-        public void Prefix(string pStr, params object[] pArgs)
+        public void Prefix(string str, params object[] args)
         {
-            Log(_prefix, false, pStr, pArgs);
+            Log(_prefix, false, str, args);
         }
 
         /// <summary>
         /// Adds text to the start of the entry.
         /// </summary>
-        public void PrefixQuote(string pStr, params object[] pArgs)
+        public void PrefixQuote(string str, params object[] args)
         {
-            Log(_prefix, true, pStr, pArgs);
+            Log(_prefix, true, str, args);
         }
 
         /// <summary>
         /// Adds text to the end of the entry.
         /// </summary>
-        public void Tail(string pStr, params object[] pArgs)
+        public void Tail(string str, params object[] args)
         {
-            Log(_tail, false, pStr, pArgs);
+            Log(_tail, false, str, args);
         }
 
         /// <summary>
         /// Adds the text to the body of the entry surrounded by quotes.
         /// </summary>
-        public void TailQuote(string pStr, params object[] pArgs)
+        public void TailQuote(string str, params object[] args)
         {
-            Log(_tail, true, pStr, pArgs);
+            Log(_tail, true, str, args);
         }
     }
 }

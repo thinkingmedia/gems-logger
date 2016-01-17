@@ -15,7 +15,7 @@ namespace GemsLogger.Writers
         /// <summary>
         /// The filter function.
         /// </summary>
-        private bool ThreadFilter(Logger.eLEVEL pLevel, string pPrefix, string pMsg)
+        private bool ThreadFilter(Logger.eLEVEL level, string prefix, string msg)
         {
             return (ThreadID == Thread.CurrentThread.ManagedThreadId);
         }
@@ -23,10 +23,10 @@ namespace GemsLogger.Writers
         /// <summary>
         /// Constructor
         /// </summary>
-        public ThreadWriter(ILogWriter pWriter, int pThreadID = 0)
-            : base(pWriter)
+        public ThreadWriter(ILogWriter writer, int threadID = 0)
+            : base(writer)
         {
-            ThreadID = pThreadID;
+            ThreadID = threadID;
             Filter = ThreadFilter;
         }
     }
