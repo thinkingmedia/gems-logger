@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 
 [assembly: AssemblyTitle("gems-logger")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("A multithread friendly logger for C# that includes stack-able writers and a UI component for watching the output.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("ThinkingMedia")]
 [assembly: AssemblyProduct("gems-logger")]

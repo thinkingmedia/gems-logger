@@ -51,7 +51,7 @@ namespace GemsLogger
         /// <summary>
         /// Logs an Error to the Windows event Log.
         /// </summary>
-        private static void EventLog(string pMsg)
+        private static void EventLog(string msg)
         {
             string name = AppDomain.CurrentDomain.FriendlyName;
             const string log = "Application";
@@ -59,10 +59,10 @@ namespace GemsLogger
             {
                 System.Diagnostics.EventLog.CreateEventSource(name, log);
             }
-            System.Diagnostics.EventLog.WriteEntry(name, pMsg, EventLogEntryType.Error);
+            System.Diagnostics.EventLog.WriteEntry(name, msg, EventLogEntryType.Error);
 
 #if DEBUG
-            System.Diagnostics.Debug.WriteLine(pMsg);
+            System.Diagnostics.Debug.WriteLine(msg);
 #else
                     Console.WriteLine(msg);
 #endif
