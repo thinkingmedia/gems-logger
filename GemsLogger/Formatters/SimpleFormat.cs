@@ -6,12 +6,12 @@ namespace GemsLogger.Formatters
     /// <summary>
     /// Writes the Log message with just the level details.
     /// </summary>
-    public class SimpleFormat : iFormatter
+    public class SimpleFormat : IFormatter
     {
         /// <summary>
         /// Adds just the Log level to the entry.
         /// </summary>
-        string iFormatter.format(Logger.eLEVEL pLevel, string pPrefix, string pMsg)
+        string IFormatter.format(Logger.eLEVEL pLevel, string pPrefix, string pMsg)
         {
             int threadID = Thread.CurrentThread.ManagedThreadId;
 

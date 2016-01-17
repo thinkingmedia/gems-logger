@@ -9,7 +9,7 @@ namespace GemsLogger.Formatters
     /// <summary>
     /// Adds extra details to the Log information.
     /// </summary>
-    public class DetailFormat : iFormatter
+    public class DetailFormat : IFormatter
     {
         /// <summary>
         /// A mapping between thread IDs and job codes.
@@ -19,7 +19,7 @@ namespace GemsLogger.Formatters
         /// <summary>
         /// Adds details about a Log entry.
         /// </summary>
-        String iFormatter.format(Logger.eLEVEL pLevel, String pPrefix, String pMsg)
+        String IFormatter.format(Logger.eLEVEL pLevel, String pPrefix, String pMsg)
         {
             lock (_codes)
             {

@@ -5,7 +5,7 @@ namespace GemsLogger.Formatters
     /// <summary>
     /// Used to handle formatting of Log lines.
     /// </summary>
-    public interface iFormatter
+    public interface IFormatter
     {
         /// <summary>
         /// Formats a Log entry.

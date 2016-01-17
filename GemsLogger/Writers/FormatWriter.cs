@@ -12,7 +12,7 @@ namespace GemsLogger.Writers
         /// <summary>
         /// A list of string formatters that will be used.
         /// </summary>
-        private readonly List<iFormatter> _formatters = new List<iFormatter>();
+        private readonly List<IFormatter> _formatters = new List<IFormatter>();
 
         /// <summary>
         /// The writer object that will perform that actual writing.
@@ -22,7 +22,7 @@ namespace GemsLogger.Writers
         /// <summary>
         /// Adds a formatter to the list.
         /// </summary>
-        private void Add(iFormatter pFormatter)
+        private void Add(IFormatter pFormatter)
         {
             _formatters.Add(pFormatter);
         }
@@ -66,7 +66,7 @@ namespace GemsLogger.Writers
         /// <summary>
         /// Constructor
         /// </summary>
-        public FormatWriter(ILogWriter pWriter, iFormatter pFormatter)
+        public FormatWriter(ILogWriter pWriter, IFormatter pFormatter)
             : this(pWriter)
         {
             Add(pFormatter);
@@ -75,7 +75,7 @@ namespace GemsLogger.Writers
         /// <summary>
         /// Removes a formatter from the list.
         /// </summary>
-        public void Remove(iFormatter pFormatter)
+        public void Remove(IFormatter pFormatter)
         {
             _formatters.Remove(pFormatter);
         }

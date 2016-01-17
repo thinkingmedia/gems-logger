@@ -20,6 +20,6 @@ namespace GemsLogger.Writers
         /// <summary>
         /// Writes a line.
         /// </summary>
-        void Write(Logger.eLEVEL pLevel, String pPrefix, String pMsg);
+        void Write(Logger.eLEVEL pLevel, string pPrefix, string pMsg);
     }
 }
